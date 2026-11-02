@@ -1,19 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cream"
     tools:context=".MainActivity">
-r
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:padding="20dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Cafe Name -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cafe_name"
+                android:textColor="@color/dark_brown"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+
+            <!-- Welcome Message -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_message"
+                android:textColor="@color/light_brown"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Search Bar -->
+
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/search_hint"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:singleLine="true"
+                android:padding="12dp"
+                android:textColorHint="@color/dark_brown"
+                android:backgroundTint="@color/light_brown"
+                android:layout_marginTop="25dp"/>
+
+
+            <!-- Menu Heading -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_brown"
+                android:layout_marginTop="30dp"/>
+
+            <!-- Categories -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categories"
+                android:textSize="16sp"
+                android:textColor="@color/light_brown"
+                android:layout_marginTop="15dp"/>
+
+            <!-- Popular Items -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popular_items"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_brown"
+                android:layout_marginTop="30dp"/>
+
+            <!-- Latte -->
+
+
+            <!-- Latte Product Card -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@color/white"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:src="@drawable/latte"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/latte_name"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latte_name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_brown"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latte_description"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_brown"
+                    android:layout_marginTop="5dp"/>
+
+                <Button
+                    android:id="@+id/latteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_latte"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+
+            <!-- Cappuccino -->
+
+        <!-- Cappuccino Product Card -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/white"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/cappuccino"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/cappuccino_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cappuccino_name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_brown"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cappuccino_description"
+                android:textSize="14sp"
+                android:textColor="@color/dark_brown"/>
+
+            <Button
+                android:id="@+id/cappuccinoButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_cappuccino"/>
+        </LinearLayout>
+
+            <!-- Croissant -->
+
+        <!-- Croissant Product Card -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/white"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/croissant"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/croissant_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/croissant_name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_brown"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/croissant_description"
+                android:textSize="14sp"
+                android:textColor="@color/dark_brown"/>
+
+            <Button
+                android:id="@+id/croissantButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_croissant"/>
+
+            <TextView
+                android:id="@+id/cartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_text"
+                android:textSize="16sp"
+                android:textColor="@color/dark_brown"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

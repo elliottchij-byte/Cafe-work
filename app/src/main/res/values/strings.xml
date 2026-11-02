@@ -1,3 +1,31 @@
+
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Brew &amp; Bean</string>
+
+    <!-- Home Screen -->
+    <string name="cafe_name">Brew &amp; Bean ☕</string>
+    <string name="welcome_message">Welcome! What would you like today?</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search for coffee, food</string>
+
+    <!-- Menu -->
+    <string name="menu_title">Explore Our Menu</string>
+    <string name="categories">Coffee    Tea    Pastries    Snacks</string>
+    <string name="popular_items">Popular Items</string>
+
+    <!-- Products -->
+    <string name="latte_name">Latte</string>
+    <string name="latte_description">Smooth espresso with steamed milk - £3.50</string>
+    <string name="cappuccino_name">Cappuccino</string>
+    <string name="cappuccino_description">Espresso with steamed milk and foam - £3.20</string>
+    <string name="croissant_name">Butter Croissant</string>
+    <string name="croissant_description">Freshly baked butter croissant - £2.50</string>
+
+    <!-- Buttons -->
+    <string name="add_latte">Add Latte to Cart</string>
+    <string name="add_cappuccino">Add Cappuccino to Cart</string>
+    <string name="add_croissant">Add Croissant to Cart</string>
+
+    <string name="cart_text">Cart: 0 items | Total: £0.00</string>
 </resources>
