@@ -3,8 +3,8 @@ package com.example.myapplication
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,30 +20,37 @@ class MainActivity : AppCompatActivity() {
         val cappuccinoButton = findViewById<Button>(R.id.cappuccinoButton)
         val croissantButton = findViewById<Button>(R.id.croissantButton)
         val cartText = findViewById<TextView>(R.id.cartText)
+        // this finds the View Shopping Cart button, waits for the customer to press it and then opens CartActivity.
+        val viewCartButton = findViewById<Button>(R.id.viewCartButton)
 
+        viewCartButton.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+        }
+// allows it to save the actual product and quantity in cart manager
         latteButton.setOnClickListener {
+            CartManager.addItem("Latte", 3.50)
             cartItems++
             cartTotal += 3.50
             updateCart(cartText)
-            Toast.makeText(this, "Latte added to cart!", Toast.LENGTH_SHORT).show()
         }
 
         cappuccinoButton.setOnClickListener {
+            CartManager.addItem("Cappuccino", 3.20)
             cartItems++
             cartTotal += 3.20
             updateCart(cartText)
-            Toast.makeText(this, "Cappuccino added to cart!", Toast.LENGTH_SHORT).show()
         }
 
         croissantButton.setOnClickListener {
+            CartManager.addItem("Croissant", 2.50)
             cartItems++
             cartTotal += 2.50
             updateCart(cartText)
-            Toast.makeText(this, "Croissant added to cart!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun updateCart(cartText: TextView) {
-        cartText.text = "Cart: $cartItems items | Total: £${"%.2f".format(cartTotal)}"
+        cartText.text = getString(R.string.cart_summary, cartItems, cartTotal)
     }
 }
