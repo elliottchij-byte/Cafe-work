@@ -11,6 +11,10 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +22,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+
+        NotificationHelper.createNotificationChannel(this)
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+                requestPermissions(
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    100
+                )
+            }
+        }
+
+
+
+        val feedbackButton = findViewById<Button>(R.id.feedbackButton)
+
+        feedbackButton.setOnClickListener {
+            val intent = Intent(this, FeedbackActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val latteButton = findViewById<Button>(R.id.latteButton)
         val cappuccinoButton = findViewById<Button>(R.id.cappuccinoButton)

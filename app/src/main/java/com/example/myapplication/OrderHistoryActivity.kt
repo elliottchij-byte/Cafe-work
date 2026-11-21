@@ -6,8 +6,12 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ListenerRegistration
+import android.widget.Toast
 
 class OrderHistoryActivity : AppCompatActivity() {
+
+    private var orderListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,39 +28,68 @@ class OrderHistoryActivity : AppCompatActivity() {
             finish()
         }
 
-        if (OrderManager.orders.isEmpty()) {
+        val loadingText = TextView(this)
+        loadingText.text = "Loading your orders..."
+        loadingText.textSize = 16f
+        orderHistoryContainer.addView(loadingText)
 
-            val emptyMessage = TextView(this)
-            emptyMessage.text = "You haven't placed any orders yet."
-            emptyMessage.textSize = 16f
+        orderListener = OrderManager.listenForOrders(
+            onUpdate = { orders ->
 
-            orderHistoryContainer.addView(emptyMessage)
+                orderHistoryContainer.removeAllViews()
 
-        } else {
+                if (orders.isEmpty()) {
 
-            OrderManager.orders.forEachIndexed { index, order ->
+                    val emptyMessage = TextView(this)
+                    emptyMessage.text = "No orders found."
+                    emptyMessage.textSize = 16f
 
-                val orderText = TextView(this)
+                    orderHistoryContainer.addView(emptyMessage)
 
-                val products = order.items.joinToString("\n") {
-                    "${it.name} x${it.quantity}"
+                } else {
+
+                    orders.forEachIndexed { index, order ->
+
+                        val orderText = TextView(this)
+
+                        val products = order.items.joinToString("\n") {
+                            "${it.name} x${it.quantity}"
+                        }
+
+                        val date = java.text.SimpleDateFormat(
+                            "dd/MM/yyyy HH:mm",
+                            java.util.Locale.getDefault()
+                        ).format(java.util.Date(order.orderDate))
+
+                        orderText.text =
+                            "Order ${index + 1}\n" +
+                                    "Date: $date\n" +
+                                    "$products\n" +
+                                    "Total: £${"%.2f".format(order.total)}\n" +
+                                    "Status: ${order.status}"
+
+                        orderText.textSize = 16f
+                        orderText.setTextColor(getColor(R.color.dark_brown))
+                        orderText.setPadding(12, 20, 12, 20)
+
+                        orderHistoryContainer.addView(orderText)
+                    }
                 }
+            },
 
-                orderText.text =
-                    "Order ${index + 1}\n" +
-                            "$products\n" +
-                            "Total: £${"%.2f".format(order.total)}\n" +
-                            "Status: ${order.status}"
 
-                orderText.textSize = 16f
-                orderText.setTextColor(
-                    getColor(R.color.dark_brown)
-                )
+            onStatusChanged = { newStatus ->
 
-                orderText.setPadding(12, 12, 12, 12)
 
-                orderHistoryContainer.addView(orderText)
+
+                NotificationHelper.showNotification(this, newStatus)
             }
-           }
-           }
-        }
+
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        orderListener?.remove()
+    }
+}

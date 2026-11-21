@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935116206079",
+    "project_id": "brew-and-bean-83a83",
+    "storage_bucket": "brew-and-bean-83a83.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935116206079:android:158d49106b0c663d1c01ca",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcXUtVI9voH_Hsfreacq5B_--lckwebWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

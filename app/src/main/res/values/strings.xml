@@ -43,4 +43,32 @@
     <string name="back_to_menu">Back to Menu</string>
     <string name="order_history">Order History</string>
 
+    <string name="register_cafe_name">Brew &amp; Bean</string>
+    <string name="register_title">Create your account</string>
+    <string name="register_description">Join us and enjoy your favourite café treats.</string>
+    <string name="full_name_hint">Full name</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_link">Already have an account? Log in</string>
+    <string name="login_title">Welcome Back!</string>
+    <string name="login_description">Log in to your Brew &amp; Bean account.</string>
+    <string name="login_button">Log In</string>
+    <string name="register_link">Dont have an account? Register</string>
+
+
+    <string name="feedback_title">Leave Feedback</string>
+    <string name="feedback_description">Tell us about your experience!</string>
+    <string name="feedback_category_hint">Choose what to review</string>
+    <string name="feedback_rating_label">Your Rating</string>
+    <string name="feedback_message_hint">Write your feedback here...</string>
+    <string name="submit_feedback">Submit Feedback</string>
+
+    <string name="leave_feedback">Leave Feedback</string>
+
+
+
+
+
 </resources>
