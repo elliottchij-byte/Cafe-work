@@ -6,8 +6,8 @@ import android.view.Gravity
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 
 class CartActivity : AppCompatActivity() {
@@ -18,33 +18,37 @@ class CartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cart)
 
         showCart()
-// When a customer presses it the app will now attempt to place their order and displays the result
+
         val placeOrderButton = findViewById<Button>(R.id.placeOrderButton)
 
         placeOrderButton.setOnClickListener {
 
-            val order = OrderManager.placeOrder()
-// checks if the cart is empty and iff empty it displays a message
-            if (order == null) {
+            placeOrderButton.isEnabled = false
 
-                Toast.makeText(
-                    this,
-                    "Your cart is empty!",
-                    Toast.LENGTH_SHORT
-                ).show()
-// this displays the order confirmation
-            } else {
+            OrderManager.placeOrder { order ->
 
-                AlertDialog.Builder(this)
-                    .setTitle("Order Confirmed!")
-                    .setMessage("Your order has been placed successfully.\nTotal: £${"%.2f".format(order.total)}")
-                    .setPositiveButton("OK", null)
-                    .show()
+                placeOrderButton.isEnabled = true
 
-                showCart()
+                if (order == null) {
+                    Toast.makeText(
+                        this,
+                        "Order could not be placed. Check your cart, login and internet connection.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    AlertDialog.Builder(this)
+                        .setTitle("Order Confirmed!")
+                        .setMessage(
+                            "Your order has been placed successfully.\nTotal: £${"%.2f".format(order.total)}"
+                        )
+                        .setPositiveButton("OK", null)
+                        .show()
+
+                    showCart()
+                }
             }
         }
-        // this makes the return to menu button to work
+
         val backToMenuButton = findViewById<Button>(R.id.backToMenuButton)
 
         backToMenuButton.setOnClickListener {
@@ -72,11 +76,18 @@ class CartActivity : AppCompatActivity() {
             itemLayout.setPadding(0, 15, 0, 15)
 
             val nameText = TextView(this)
-            nameText.text = getString(R.string.cart_item_name_price, item.name, item.price)
+            nameText.text = getString(
+                R.string.cart_item_name_price,
+                item.name,
+                item.price
+            )
             nameText.textSize = 18f
 
             val quantityText = TextView(this)
-            quantityText.text = getString(R.string.quantity_text, item.quantity)
+            quantityText.text = getString(
+                R.string.quantity_text,
+                item.quantity
+            )
 
             val buttonLayout = LinearLayout(this)
             buttonLayout.orientation = LinearLayout.HORIZONTAL
